@@ -30,16 +30,19 @@ import './index.css';
     constructor(props){
         super(props);
         this.state = {
-            squares : Array(9).fill(null)
+            squares : Array(9).fill(null),
+            xIsNext:true
         }
+        this.handleClick=this.handleClick.bind(this);
       
     }
 
     handleClick(i){
         const squares = this.state.squares.slice();
-        squares[i]="X";
+        squares[i]=this.state.xIsNext ? "X" : "O";
         this.setState({
-            squares:squares
+            squares:squares,
+            xIsNext: !this.state.xIsNext
         }
             );
 
@@ -51,7 +54,7 @@ import './index.css';
     }
   
     render() {
-      const status = 'Next player: X';
+      const status = 'Next player: ' + (this.state.xIsNext ? "X" : "O");
   
       return (
         <div>
